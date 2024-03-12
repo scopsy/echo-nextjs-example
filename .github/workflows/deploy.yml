@@ -18,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Sync State to Novu
-        uses: novuhq/actions-echo-sync
+        uses: novuhq/actions-echo-sync@main
         with:
           novu-api-key: ${{secrets.NOVU_API_KEY}}
           echo-url: "https://my-echo-app.vercel.app/api/echo"
