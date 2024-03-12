@@ -23,29 +23,5 @@ echo.workflow('hello-world', async ({ step }) => {
             type: 'object', properties: { world: { type: 'string', default: 'World' }}
         }
     });
-
-    await step.email('send-action', async (inputs) => {
-        return {
-            subject: "This is an email subject",
-            body: "E-mail body of hello " + inputs.world
-        }
-    }, {
-        inputSchema: {
-            type: 'object', properties: { world: { type: 'string', default: 'World' }}
-        }
-    });
 }, { payloadSchema: { type: 'object', properties: {} }});
 
-
-echo.workflow('hello-actions', async ({ step }) => {
-    await step.email('send-email', async (inputs) => {
-        return {
-            subject: "This is an email subject",
-            body: "E-mail body of hello " + inputs.world
-        }
-    }, {
-        inputSchema: {
-            type: 'object', properties: { world: { type: 'string', default: 'World' }}
-        }
-    });
-}, { payloadSchema: { type: 'object', properties: {} }});
