@@ -1,0 +1,24 @@
+# workflow triggers
+on:
+  push:
+    branches: [ source ]
+  pull_request:
+    branches: [ source ]
+  workflow_dispatch:
+
+  # Allows external webhook trigger
+  repository_dispatch:
+    types:
+      - webhook
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Sync State to Novu
+        uses: novuhq/actions-echo-sync
+        with:
+          novu-api-key: ${{secrets.NOVU_API_KEY}}
+          echo-url: "https://my-echo-app.vercel.app/api/echo"
